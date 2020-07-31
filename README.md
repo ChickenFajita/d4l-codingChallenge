@@ -29,20 +29,15 @@ Therefore I will lay out characteristics of both in bullet points:
 - optimal for processing heavy tasks
 
 
-Important is also the kind of problem we are facing. Multiprocessing and Threading loses efficiency the more the sequential part of the problem is, where synchronisation is needed.
-
-[Amdahl's Law](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Amdahl.png/660px-Amdahl.png)
-
+Important is also the kind of problem we are facing. Multiprocessing and Threading loses efficiency the more the sequential part of the problem is, where synchronisation is needed. Amdahl's Law is not applicable for us, because we would need "real" cores.
 Here we have a big number of tasks which are quick to solve. Not a lot of processing power is needed, which means that there is little need to communicate inbetween. I expected both to perform similarly with threading having an edge, because of its synergy with I/O tasks. Therefore I tried both and looked at the times
 
 
 **Results**
 
-Workers | Multithreading | Multiprocessing
---------|----------------|----------------
-1 | 
-2
-5
-10
-50
-100
+I stopped the time for both programs for 100 mails, 50 mails and 10 mails, trying out 1,2,5,10,100 workers.
+The result is easy to be interpreted as multithreading was faster in every test run.  The completion times had a difference of rougly 10-50ms when using only one thread or one process. This can be reasoned by the bigger overhead of creating and destroying processes.
+Far more significant was the difference in performance when using more workers. 
+Here the drawback of using multiple processes or cores showed as the programs slowed down drastically for >100 processes. For threading the times slowed down only by a fraction of a second, only even when using >500 seconds. 
+
+**Therefore threading is superior for I/O heavy tasks and optimal for this problem.**
