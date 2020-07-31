@@ -1,4 +1,4 @@
-## d4l-codingChallenge
+# d4l-codingChallenge
 >“Please write a program in your prefered language that will send out emails to recipients from a huge list (1 Mio entries) in a performant way. You do not need to send real emails but just fake the email sending by waiting for half a second.”
 
 This task focuses on methods to increase performance.
@@ -7,7 +7,7 @@ The obvious problem is the huge workload of 1 Mio entries. Therefore it comes to
 Due to python interpreters running sequentially and synchronously, it would take 0.5*1 000 000 seconds, which is not feasible.
 
 
-# How to tackle this problem?
+## How to tackle this problem?
 
 For dividing this workload either multiprocessing or multithreading comes to mind. 
 
@@ -33,7 +33,7 @@ Also important is the kind of task we face. Multiprocessing and threading both l
 Here we have a big number of tasks which are quick to solve. Not a lot of processing power is needed, which means that there is little need to communicate inbetween. I expected both to perform similarly with threading having an edge, because of its synergy with I/O tasks. Therefore I tried both and looked at the times
 
 
-**Results**
+## Result
 
 I stopped the time for both programs for 100 mails, 50 mails and 10 mails, trying out 1,2,5,10,100 workers.
 The result is easy to be interpreted as multithreading was faster in every test run.  The completion times had a difference of rougly 10-50ms when using only one thread or one process. This can be reasoned by the bigger overhead of creating and destroying processes.
